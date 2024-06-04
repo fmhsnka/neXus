@@ -1,0 +1,56 @@
+#left {
+    height: 100vh;
+    background-color: #7A9AED;
+    border-radius: 0 20px 20px 0;
+}
+  
+#right {
+    height: 100vh;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+#right img {
+    max-width: 100%;
+    max-height: 100%;
+}
+  
+.neXus-title {
+    font-weight: bold;
+}
+  
+.neXus-text {
+    color: white;
+    font-weight: bold;
+}
+  
+.form-control {
+    border-radius: 10px;
+}
+
+.label-email {
+    color: white; 
+    font-weight: bold; 
+    margin-left: -220px;
+}
+
+.label-password {
+    color: white; 
+    font-weight: bold; 
+    margin-left: -190px;
+}
+
+.btn-block {
+    background-color: #fff;
+    border-color: #fff; 
+    border-radius: 17px; 
+    padding: 7px; 
+    font-size: 20px; 
+    margin-top: 40px;
+    color: #7A9AED;
+    font-weight: bold;
+    width: 240px;
+    margin-left: 10px;
+}

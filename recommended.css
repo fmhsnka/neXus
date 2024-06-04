@@ -1,0 +1,110 @@
+.left {
+    background-color: #7A9AED;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0px 0 500px 0;
+}
+
+.right {
+    background-color: #ffffff;
+    height: 100vh;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.logo {
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+.screen-image {
+    width: 100%; 
+    max-width: 500px; 
+    margin-top: 20px; 
+}
+
+.description, h2 {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+p {
+    font-weight: bold;
+}
+
+h1 {
+    padding: 50px;
+    color: #7A9AED;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+h2 {
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.exercise-content {
+    text-align: left;
+    font-weight: bold;
+    max-width: 500px;
+    width: 100%;
+}
+
+.calories-info {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.calories-header {
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 30px;
+    color: #7A9AED;
+
+}
+
+.calories-amount {
+    font-weight: bold;
+    font-size: 30px;
+    margin: 10px;
+    color: #7A9AED;
+}
+
+.exercise-box {
+    justify-content: center;
+    border: 2px solid #7A9AED;
+    padding: 20px;
+    box-shadow: 5px 5px 10px #888888 !important;
+    border-radius: 32px;
+    background-color: #7A9AED;
+    color: #ffffff;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.exercise-box p {
+    margin: 0;
+}
+
+.calculation {
+    color: #7A9AED;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.btn-primary {
+    background-color: #7A9AED;
+    border-color: #7A9AED;
+    box-shadow: 5px 5px 10px #888888 !important;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 20px;
+}

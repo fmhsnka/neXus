@@ -1,0 +1,101 @@
+.left {
+    background-color: #7A9AED;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0px 0 500px 0;
+}
+
+.right {
+    background-color: #ffffff;
+    height: 100vh;
+}
+
+.profile-section {
+    text-align: center;
+    color: #ffffff;
+}
+
+.profile-image {
+    width: 150px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.screen4image {
+    width: 100%; 
+    max-width: 500px; 
+    margin-top: 20px; 
+}
+
+.semi-title, h2 {
+    color: #7A9AED;
+    font-weight: bold;
+}
+
+p, span {
+    font-weight: bold;
+}
+
+h4 {
+    font-size: large;
+}
+
+h4, h3, h5 {
+    margin-top: 0;
+    font-weight: bold;
+}
+
+.welcome-text {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.info-box {
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+.info-item {
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.bmi-weight, .bmi-height {
+    position: relative;
+    top: 30px;
+    left: 5px;
+    color: #ffffff;
+    margin-right: 10px;
+    font-size: 15px;
+}
+
+.info-value {
+    background-color: #fff;
+    padding: 5px 10px;
+    border-radius: 10px;
+    color: #7A9AED;
+    display: inline-block;
+    font-weight: bold;
+    width: 120px;
+    margin: 30px;
+}
+
+.btn-primary {
+    background-color: #7A9AED;
+    border-color: #7A9AED;
+    color: #ffffff;
+    font-weight: bold;
+    border-radius: 10px;
+    border-width: 10px;
+}
+
+.btn-primary:hover {
+    background-color: #6C88D2;
+    border-color: #6C88D2;
+    color: #ffffff;
+}
+

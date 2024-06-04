@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommended Exercise</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="recommended.css">
+    <link rel="icon" href="NeXusLogo.png" type="image/x-icon">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 left d-flex flex-column justify-content-center align-items-center">
+                <img src="NeXusLogo.png" alt="NeXus Logo" class="logo">
+                <h2>NeXus</h2>
+                <p class="description">Your Personalized Fitness Coach</p>
+                <img src="screen6image.png" alt="Screen Image" class="img-fluid screen-image">
+            </div>
+            <div class="col-md-6 right">
+                <h1>Exercise Today!</h1>
+                <div id="exercise-content" class="exercise-content">
+                </div>
+                <div class="calories-info">
+                    <p class="calories-header">Calories Burned: </p>
+                    <p class="calories-amount" id="calories-amount"></p>
+                </div>
+                <button class="btn btn-primary mt-3" onclick="redirectToIndex()">Log Out</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        function redirectToIndex() {
+            window.location.href = 'index.html';
+        }
+    </script>
+    <script src="recommended.js"></script>
+</body>
+</html>

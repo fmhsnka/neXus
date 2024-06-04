@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="login.css">
+  <link rel="icon" href="NeXusLogo.png" type="image/x-icon">
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6 d-flex align-items-center justify-content-center" id="left">
+        <div class="text-center text-white">
+          <img src="neXusLogo.png" alt="neXus Logo" class="mb-2">
+          <h2 class="neXus-title">NeXus</h2>
+          <p class="neXus-text mb-4">A Journey Created for You! Start Now</p>
+          <form id="loginForm">
+            <div class="form-group">
+              <label for="email" class="label-email">Email</label>
+              <input type="email" class="form-control rounded-10" id="email" required>
+            </div>
+            <div class="form-group">
+              <label for="password" class="label-password">Password</label>
+              <input type="password" class="form-control rounded-10" id="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Login!</button>
+          </form>
+          <p id="loginMessage" class="mt-3 neXus-text"></p>
+          <p class="mt-3 neXus-text">Don't have an account? <a href="signup.html">Sign up</a></p>
+        </div>
+      </div>
+      <div class="col-md-6" id="right">
+        <img src="screen2image.png" alt="Screen Image">
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+  
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyAJcJS-EaA1gyVd5TdMZ6kbB45_FN1PFkg",
+      authDomain: "nexus-c6655.firebaseapp.com",
+      projectId: "nexus-c6655",
+      storageBucket: "nexus-c6655.appspot.com",
+      messagingSenderId: "738781615552",
+      appId: "1:738781615552:web:4d577e9b69b92a799a2425"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    const loginForm = document.getElementById('loginForm');
+
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      try {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        // Store user authentication state
+        sessionStorage.setItem('userLoggedIn', true);
+        // Redirect to homepage upon successful login
+        window.location.href = 'homepage.html';
+
+        // Fetch data from Firestore after successful login
+        const user = userCredential.user;
+        const querySnapshot = await getDocs(collection(db, 'users'));
+        querySnapshot.forEach((doc) => {
+          if (doc.data().email === user.email) {
+            // Here you can access user-specific data from Firestore
+            console.log('User data:', doc.data());
+          }
+        });
+      } catch (error) {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        document.getElementById('loginMessage').innerText = errorMessage;
+      }
+    });
+  </script>
+</body>
+</html>

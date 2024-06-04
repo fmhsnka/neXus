@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="homepage.css">
+    <link rel="icon" href="NeXusLogo.png" type="image/x-icon">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 left">
+                <div class="profile-section">
+                    <img src="profileimage.png" alt="Profile Image" class="profile-image">
+                    <h3 class="welcome-text">Welcome!</h3>
+                    <h4 id="profile-name">John Doe</h4>
+                    <div class="info-box">
+                        <div class="info-item">
+                            <h5 class="bmi-weight">Weight</h5>
+                            <div class="info-value" id="profile-weight">70</div>
+                        </div>
+                        <div class="info-item">
+                            <h5 class="bmi-height">Height</h5>
+                            <div class="info-value" id="profile-height">175</div>
+                        </div>
+                    </div>
+                    <h5>Current Body Mass</h5>
+                    <span id="profile-bmi"></span>
+                    <div id="bmi-category"></div> <!-- Existing element to display BMI category -->
+                </div>
+            </div>
+            <div class="col-md-6 right d-flex flex-column justify-content-center align-items-center">
+                <img src="NeXusLogo.png" alt="NeXus Logo" class="logo">
+                <h2>NeXus</h2>
+                <p class="semi-title">A Step Closer to your goals!</p>
+                <img src="screen4image.jpg" alt="screen4image" class="img-fluid screen4image">
+                <button class="btn btn-primary mt-3">Get Recommended Exercise</button>
+            </div>
+        </div>
+    </div>
+    <script src="homepage.js"></script>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+        import { getAuth } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyAJcJS-EaA1gyVd5TdMZ6kbB45_FN1PFkg",
+          authDomain: "nexus-c6655.firebaseapp.com",
+          projectId: "nexus-c6655",
+          storageBucket: "nexus-c6655.appspot.com",
+          messagingSenderId: "738781615552",
+          appId: "1:738781615552:web:4d577e9b69b92a799a2425"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth();
+        const firestore = getFirestore();
+
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                const userId = user.uid;
+                console.log("User ID:", userId);
+
+                const userDocRef = doc(firestore, "users", userId);
+                getDoc(userDocRef).then((docSnapshot) => {
+                    if (docSnapshot.exists()) {
+                        const userData = docSnapshot.data();
+                        console.log("User Data:", userData);
+
+                        document.getElementById("profile-name").textContent = userData.name;
+                        document.getElementById("profile-weight").textContent = userData.weight;
+                        document.getElementById("profile-height").textContent = userData.height;
+
+                        if (userData.height && userData.weight) {
+                            const bmi = calculateBMI(userData.height, userData.weight);
+                            document.getElementById("profile-bmi").textContent = `BMI: ${bmi}`;
+                            const bmiCategory = getBMICategory(bmi);
+                            document.getElementById("bmi-category").textContent = `${bmiCategory}`;
+                            document.getElementById("bmi-category").style.fontWeight = "bold"; // Ensure bold font-weight
+                        }
+                    } else {
+                        console.log("User document does not exist");
+                    }
+                }).catch((error) => {
+                    console.error("Error getting user document:", error);
+                });
+            } else {
+                console.log("No user is currently logged in");
+            }
+        });
+
+        function calculateBMI(height, weight) {
+            const heightInMeters = height / 100;
+            return (weight / (heightInMeters * heightInMeters)).toFixed(2);
+        }
+
+        function getBMICategory(bmi) {
+            if (bmi < 18.5) {
+                return "Underweight";
+            } else if (bmi >= 18.5 && bmi < 25) {
+                return "Normal";
+            } else if (bmi >= 25 && bmi < 30) {
+                return "Overweight";
+            } else {
+                return "Obese";
+            }
+        }
+    </script>
+</body>
+</html>
